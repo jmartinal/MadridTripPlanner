@@ -1,4 +1,4 @@
-package com.example.madridtripplanner.application.ui.common
+package com.example.madridtripplanner.application.common
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

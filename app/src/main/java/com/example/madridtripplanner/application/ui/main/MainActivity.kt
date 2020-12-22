@@ -10,7 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.madridtripplanner.R
-import com.example.madridtripplanner.application.ui.common.EventObserver
+import com.example.madridtripplanner.application.common.EventObserver
 import com.example.madridtripplanner.application.ui.main.MainUiModel.*
 import com.example.madridtripplanner.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

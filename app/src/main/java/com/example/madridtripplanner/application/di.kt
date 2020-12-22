@@ -2,13 +2,13 @@ package com.example.madridtripplanner.application
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
+import com.example.madridtripplanner.application.common.manager.AndroidConnectivityManager
 import com.example.madridtripplanner.application.data.local.EMTDatabase
 import com.example.madridtripplanner.application.data.local.datasource.AppDataRoomDataSource
 import com.example.madridtripplanner.application.data.local.datasource.BusLineRoomDataSource
 import com.example.madridtripplanner.application.data.remote.EMTOpenDataClient
 import com.example.madridtripplanner.application.data.remote.datasource.AppDataWSDataSource
 import com.example.madridtripplanner.application.data.remote.datasource.BusLineWSDataSource
-import com.example.madridtripplanner.application.data.remote.manager.AndroidConnectivityManager
 import com.example.madridtripplanner.application.ui.about.AboutFragment
 import com.example.madridtripplanner.application.ui.about.AboutViewModel
 import com.example.madridtripplanner.application.ui.lineroute.LineRouteFragment

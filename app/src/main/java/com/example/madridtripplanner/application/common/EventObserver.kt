@@ -1,4 +1,4 @@
-package com.example.madridtripplanner.application.ui.common
+package com.example.madridtripplanner.application.common
 
 import androidx.lifecycle.Observer
 

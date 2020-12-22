@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.madridtripplanner.R
-import com.example.madridtripplanner.application.ui.common.Event
+import com.example.madridtripplanner.application.common.Event
 import com.example.madridtripplanner.application.ui.main.MainUiModel.Default
 import com.example.madridtripplanner.application.ui.main.MainUiModel.Loading
 import com.example.madridtripplanner.data.manager.ConnectivityManager

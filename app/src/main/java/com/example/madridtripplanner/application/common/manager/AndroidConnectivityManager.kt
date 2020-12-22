@@ -1,4 +1,4 @@
-package com.example.madridtripplanner.application.data.remote.manager
+package com.example.madridtripplanner.application.common.manager
 
 import android.app.Application
 import android.content.Context
