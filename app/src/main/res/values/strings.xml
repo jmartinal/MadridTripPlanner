@@ -5,9 +5,19 @@
     <string name="nav_header_title">Madrid Trip Planner</string>
     <string name="nav_header_subtitle">jorgemartinalvarado@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_new_route">New route</string>
+    <string name="menu_line_route">Line route</string>
+    <string name="menu_line_schedule">Line schedule</string>
+    <string name="menu_refresh_data">App data</string>
+    <string name="menu_about_app">About</string>
+
+    <string name="button_accept">Accept</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="error_title">Error</string>
+    <string name="error_no_connectivity_message">Connection not found. Please, try again later.</string>
+
+    <string name="message_check_info">Validating stored information</string>
+    <string name="message_downloading_info">Downloading info</string>
 </resources>
