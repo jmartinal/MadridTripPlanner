@@ -29,6 +29,7 @@ import com.example.madridtripplanner.data.manager.ConnectivityManager
 import com.example.madridtripplanner.data.repository.AppDataRepository
 import com.example.madridtripplanner.data.repository.BusLineRepository
 import com.example.madridtripplanner.usecases.FetchApplicationData
+import com.example.madridtripplanner.usecases.GetApiVersion
 import com.example.madridtripplanner.usecases.ValidateApplicationData
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -69,7 +70,8 @@ private val scopesModule = module {
         scoped { ValidateApplicationData(get(), get()) }
     }
     scope(named<AboutFragment>()) {
-        viewModel { AboutViewModel() }
+        viewModel { AboutViewModel(get()) }
+        scoped { GetApiVersion(get()) }
     }
     scope(named<LineRouteFragment>()) {
         viewModel { LineRouteViewModel() }

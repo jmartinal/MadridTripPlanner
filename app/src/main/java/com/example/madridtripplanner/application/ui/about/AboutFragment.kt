@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.example.madridtripplanner.BuildConfig
+import com.example.madridtripplanner.R
 import com.example.madridtripplanner.databinding.FragmentAboutBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
@@ -24,18 +27,42 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
         initVM()
-    }
-
-    private fun initUI() {
-        // TODO: Initialize UI
     }
 
     private fun initVM() {
         with(viewModel) {
-            // TODO: Start observing LiveData
+            state.observe(viewLifecycleOwner, Observer(::updateUi))
         }
+    }
+
+    private fun updateUi(uiModel: AboutUiModel) {
+        when (uiModel) {
+            is AboutUiModel.Default -> showInfo(uiModel.apiVersion)
+            is AboutUiModel.Loading -> showLoading(uiModel.messageResId)
+        }
+    }
+
+    private fun showLoading(messageResID: Int) {
+        with(binding) {
+            tvLoadingMessage.text = getString(messageResID)
+            clLoading.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideLoading() {
+        with(binding) {
+            clLoading.visibility = View.GONE
+            clInfo.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showInfo(apiVersion: String) {
+        with(binding) {
+            tvAppVersion.text = getString(R.string.about_version, BuildConfig.VERSION_NAME)
+            tvEmtGreetings.text = getString(R.string.about_emt_mention, apiVersion)
+        }
+        hideLoading()
     }
 
 }
