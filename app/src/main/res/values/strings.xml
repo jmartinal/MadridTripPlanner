@@ -14,10 +14,13 @@
 
     <string name="common_accept">Accept</string>
     <string name="common_cancel">Cancel</string>
+    <string name="common_retry">Retry</string>
     <string name="common_loading_message">Getting data</string>
 
     <string name="error_title">Error</string>
     <string name="error_no_connectivity_message">Connection not found. Please, try again later.</string>
+
+    <string name="main_error_data_not_updated">Connection not found.\nMadrid Trip Planner can work offline but data is not up to date. Keep in mind that changes could have been made and information could be imprecise.</string>
 
     <string name="message_check_info">Validating stored information</string>
     <string name="message_downloading_info">Downloading info</string>
