@@ -73,7 +73,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun performAction(action: MainAction) {
         when (action) {
-            is MainAction.ShowError -> showError(action.messageResID)
+            is MainAction.ShowMinorError -> showMinorError(action.messageResID)
+            is MainAction.ShowMajorError -> showMajorError(action.messageResID)
         }
     }
 
@@ -92,7 +93,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(messageResID: Int) {
+    private fun showMinorError(messageResID: Int) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.error_title))
+            .setMessage(getString(messageResID))
+            .setPositiveButton(getString(R.string.common_accept)) { _, _ -> }
+            .setNeutralButton(getString(R.string.common_retry)) { _, _ -> mainViewModel.refreshData() }
+            .show()
+    }
+
+    private fun showMajorError(messageResID: Int) {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(R.string.error_title))
             .setMessage(getString(messageResID))
