@@ -5,17 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_new_route"
-            android:icon="@drawable/ic_menu_new_route"
-            android:title="@string/menu_new_route" />
+            android:id="@+id/nav_route"
+            android:icon="@drawable/ic_menu_route"
+            android:title="@string/menu_route" />
         <item
-            android:id="@+id/nav_line_route"
-            android:icon="@drawable/ic_menu_line_route"
-            android:title="@string/menu_line_route" />
+            android:id="@+id/nav_line_info"
+            android:icon="@drawable/ic_menu_line_info"
+            android:title="@string/menu_line_info" />
         <item
-            android:id="@+id/nav_line_schedule"
-            android:icon="@drawable/ic_menu_line_schedule"
-            android:title="@string/menu_line_schedule" />
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_menu_favorites"
+            android:title="@string/menu_favorites" />
         <item
             android:id="@+id/nav_refresh_data"
             android:icon="@drawable/ic_menu_refresh_data"
