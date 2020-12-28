@@ -1,25 +1,25 @@
-package com.jmartinal.madridtripplanner.application.ui.lineschedule
+package com.jmartinal.madridtripplanner.application.ui.lineinfo
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jmartinal.madridtripplanner.databinding.FragmentLineScheduleBinding
+import com.jmartinal.madridtripplanner.databinding.FragmentLineInfoBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class LineScheduleFragment : Fragment() {
+class LineInfoFragment : Fragment() {
 
-    private lateinit var binding: FragmentLineScheduleBinding
-    private val viewModel: LineScheduleViewModel by lifecycleScope.viewModel(this)
+    private lateinit var binding: FragmentLineInfoBinding
+    private val viewModel: LineInfoViewModel by lifecycleScope.viewModel(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLineScheduleBinding.inflate(layoutInflater, container, false)
+        binding = FragmentLineInfoBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,4 +38,5 @@ class LineScheduleFragment : Fragment() {
             // TODO: Start observing LiveData
         }
     }
+
 }

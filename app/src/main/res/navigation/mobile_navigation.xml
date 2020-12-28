@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_new_route">
+    app:startDestination="@id/nav_route">
 
     <fragment
-        android:id="@+id/nav_new_route"
-        android:name="com.jmartinal.madridtripplanner.application.ui.newroute.NewRouteFragment"
-        android:label="@string/menu_new_route"
-        tools:layout="@layout/fragment_new_route" />
+        android:id="@+id/nav_route"
+        android:name="com.jmartinal.madridtripplanner.application.ui.route.RouteFragment"
+        android:label="@string/menu_route"
+        tools:layout="@layout/fragment_route" />
 
     <fragment
-        android:id="@+id/nav_line_route"
-        android:name="com.jmartinal.madridtripplanner.application.ui.lineroute.LineRouteFragment"
-        android:label="@string/menu_line_route"
-        tools:layout="@layout/fragment_line_route" />
+        android:id="@+id/nav_line_info"
+        android:name="com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment"
+        android:label="@string/menu_line_info"
+        tools:layout="@layout/fragment_line_info" />
 
     <fragment
-        android:id="@+id/nav_line_schedule"
-        android:name="com.jmartinal.madridtripplanner.application.ui.lineschedule.LineScheduleFragment"
-        android:label="@string/menu_line_schedule"
-        tools:layout="@layout/fragment_line_schedule" />
+        android:id="@+id/nav_favorites"
+        android:name="com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesFragment"
+        android:label="@string/menu_favorites"
+        tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/nav_about"
         android:name="com.jmartinal.madridtripplanner.application.ui.about.AboutFragment"

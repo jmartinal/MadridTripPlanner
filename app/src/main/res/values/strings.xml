@@ -6,11 +6,11 @@
     <string name="nav_header_subtitle">jorgemartinalvarado@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_new_route">New route</string>
-    <string name="menu_line_route">Line route</string>
-    <string name="menu_line_schedule">Line schedule</string>
-    <string name="menu_refresh_data">App data</string>
-    <string name="menu_about_app">About</string>
+    <string name="menu_route">Route</string>
+    <string name="menu_line_info">Line info</string>
+    <string name="menu_favorites">My favorites</string>
+    <string name="menu_refresh_data">Refresh data</string>
+    <string name="menu_about_app">About the app</string>
 
     <string name="common_accept">Accept</string>
     <string name="common_cancel">Cancel</string>

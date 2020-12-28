@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             // menu should be considered as top level destinations.
             appBarConfiguration = AppBarConfiguration(
                 setOf(
-                    R.id.nav_new_route,
-                    R.id.nav_line_route,
-                    R.id.nav_line_schedule,
+                    R.id.nav_route,
+                    R.id.nav_line_info,
+                    R.id.nav_favorites,
                     R.id.nav_refresh_data,
                     R.id.nav_about
                 ), drawerLayout

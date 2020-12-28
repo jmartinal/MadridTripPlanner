@@ -1,25 +1,25 @@
-package com.jmartinal.madridtripplanner.application.ui.newroute
+package com.jmartinal.madridtripplanner.application.ui.route
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jmartinal.madridtripplanner.databinding.FragmentNewRouteBinding
+import com.jmartinal.madridtripplanner.databinding.FragmentRouteBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class NewRouteFragment : Fragment() {
+class RouteFragment : Fragment() {
 
-    private lateinit var binding: FragmentNewRouteBinding
-    private val viewModel: NewRouteViewModel by lifecycleScope.viewModel(this)
+    private lateinit var binding: FragmentRouteBinding
+    private val viewModel: RouteViewModel by lifecycleScope.viewModel(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewRouteBinding.inflate(layoutInflater, container, false)
+        binding = FragmentRouteBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
