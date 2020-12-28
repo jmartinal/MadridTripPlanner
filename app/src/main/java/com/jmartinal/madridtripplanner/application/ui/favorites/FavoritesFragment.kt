@@ -1,25 +1,25 @@
-package com.jmartinal.madridtripplanner.application.ui.lineroute
+package com.jmartinal.madridtripplanner.application.ui.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.jmartinal.madridtripplanner.databinding.FragmentLineRouteBinding
+import com.jmartinal.madridtripplanner.databinding.FragmentFavoritesBinding
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
-class LineRouteFragment : Fragment() {
+class FavoritesFragment : Fragment() {
 
-    private lateinit var binding: FragmentLineRouteBinding
-    private val viewModel: LineRouteViewModel by lifecycleScope.viewModel(this)
+    private lateinit var binding: FragmentFavoritesBinding
+    private val viewModel: FavoritesViewModel by lifecycleScope.viewModel(this)
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLineRouteBinding.inflate(layoutInflater, container, false)
+        binding = FragmentFavoritesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,5 +38,4 @@ class LineRouteFragment : Fragment() {
             // TODO: Start observing LiveData
         }
     }
-
 }

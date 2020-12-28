@@ -11,16 +11,16 @@ import com.jmartinal.madridtripplanner.application.data.remote.datasource.AppDat
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.BusLineWSDataSource
 import com.jmartinal.madridtripplanner.application.ui.about.AboutFragment
 import com.jmartinal.madridtripplanner.application.ui.about.AboutViewModel
-import com.jmartinal.madridtripplanner.application.ui.lineroute.LineRouteFragment
-import com.jmartinal.madridtripplanner.application.ui.lineroute.LineRouteViewModel
-import com.jmartinal.madridtripplanner.application.ui.lineschedule.LineScheduleFragment
-import com.jmartinal.madridtripplanner.application.ui.lineschedule.LineScheduleViewModel
+import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesFragment
+import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesViewModel
+import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment
+import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoViewModel
 import com.jmartinal.madridtripplanner.application.ui.main.MainActivity
 import com.jmartinal.madridtripplanner.application.ui.main.MainViewModel
-import com.jmartinal.madridtripplanner.application.ui.newroute.NewRouteFragment
-import com.jmartinal.madridtripplanner.application.ui.newroute.NewRouteViewModel
 import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataFragment
 import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataViewModel
+import com.jmartinal.madridtripplanner.application.ui.route.RouteFragment
+import com.jmartinal.madridtripplanner.application.ui.route.RouteViewModel
 import com.jmartinal.madridtripplanner.data.datasource.AppDataLocalDataSource
 import com.jmartinal.madridtripplanner.data.datasource.AppDataRemoteDataSource
 import com.jmartinal.madridtripplanner.data.datasource.BusLineLocalDataSource
@@ -73,14 +73,14 @@ private val scopesModule = module {
         viewModel { AboutViewModel(get()) }
         scoped { GetApplicationData(get()) }
     }
-    scope(named<LineRouteFragment>()) {
-        viewModel { LineRouteViewModel() }
+    scope(named<LineInfoFragment>()) {
+        viewModel { LineInfoViewModel() }
     }
-    scope(named<LineScheduleFragment>()) {
-        viewModel { LineScheduleViewModel() }
+    scope(named<FavoritesFragment>()) {
+        viewModel { FavoritesViewModel() }
     }
-    scope(named<NewRouteFragment>()) {
-        viewModel { NewRouteViewModel() }
+    scope(named<RouteFragment>()) {
+        viewModel { RouteViewModel() }
     }
     scope(named<RefreshDataFragment>()) {
         viewModel { RefreshDataViewModel(get(), get(), get()) }
