@@ -28,9 +28,7 @@ import com.jmartinal.madridtripplanner.data.datasource.BusLineRemoteDataSource
 import com.jmartinal.madridtripplanner.data.manager.ConnectivityManager
 import com.jmartinal.madridtripplanner.data.repository.AppDataRepository
 import com.jmartinal.madridtripplanner.data.repository.BusLineRepository
-import com.jmartinal.madridtripplanner.usecases.FetchApplicationData
-import com.jmartinal.madridtripplanner.usecases.GetApplicationData
-import com.jmartinal.madridtripplanner.usecases.ValidateApplicationData
+import com.jmartinal.madridtripplanner.usecases.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -74,7 +72,8 @@ private val scopesModule = module {
         scoped { GetApplicationData(get()) }
     }
     scope(named<LineInfoFragment>()) {
-        viewModel { LineInfoViewModel() }
+        viewModel { LineInfoViewModel(get()) }
+        scoped { GetBusLines(get()) }
     }
     scope(named<FavoritesFragment>()) {
         viewModel { FavoritesViewModel() }

@@ -15,7 +15,7 @@ data class BusLinesResult(
 data class BusLinesData(
     val color: String,
     val endDate: String,
-    val forecolor: String?,
+    @Json(name = "forecolor") val foreColor: String?,
     val group: String,
     val label: String,
     val line: String,
