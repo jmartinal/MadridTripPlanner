@@ -91,6 +91,7 @@ class LineInfoFragment : Fragment() {
         when (uiModel) {
             is LineInfoUiModel.Loading -> showLoading(uiModel.messageResID)
             is LineInfoUiModel.ShowBusLines -> showBusLines(uiModel.busLines)
+            LineInfoUiModel.ShowEmptyResults -> showNoResults()
         }
     }
 
@@ -108,7 +109,8 @@ class LineInfoFragment : Fragment() {
 
     private fun showLoading(messageResID: Int) {
         with(binding) {
-            clInfo.visibility = View.GONE
+            tvEmptyList.visibility = View.GONE
+            rvBusLines.visibility = View.GONE
             tvLoadingMessage.text = getString(messageResID)
             clLoading.visibility = View.VISIBLE
         }
@@ -117,14 +119,24 @@ class LineInfoFragment : Fragment() {
     private fun hideLoading() {
         with(binding) {
             clLoading.visibility = View.GONE
-            clInfo.visibility = View.VISIBLE
+            tvEmptyList.visibility = View.GONE
+            rvBusLines.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showNoResults() {
+        with(binding) {
+            tvEmptyList.visibility = View.VISIBLE
+            rvBusLines.visibility = View.GONE
+            clLoading.visibility = View.GONE
         }
     }
 
     private fun showBusLines(busLines: List<BusLine>) {
-        adapter.submitList(busLines)
-//        hideKeyboard()
-        hideLoading()
+        adapter.submitList(busLines) {
+            binding.rvBusLines.scrollToPosition(0)
+            hideLoading()
+        }
     }
 
     private fun hideKeyboard() {

@@ -54,7 +54,11 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
                     val nameBMatches = it.nameB.toUpperCase().contains(text.toUpperCase())
                     labelMatches || nameAMatches || nameBMatches
                 }
-                _state.value = LineInfoUiModel.ShowBusLines(filteredLines)
+                if (filteredLines.isEmpty()) {
+                    _state.value = LineInfoUiModel.ShowEmptyResults
+                } else {
+                    _state.value = LineInfoUiModel.ShowBusLines(filteredLines)
+                }
             }
         }
     }
