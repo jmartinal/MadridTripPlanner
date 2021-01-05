@@ -13,11 +13,11 @@
 
     <fragment
         android:id="@+id/nav_line_info"
-        android:name="com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment"
+        android:name="com.jmartinal.madridtripplanner.application.ui.buslines.BusLinesFragment"
         android:label="@string/menu_line_info"
-        tools:layout="@layout/fragment_line_info">
+        tools:layout="@layout/fragment_bus_lines">
         <action
-            android:id="@+id/to_lineInfoDetailFragment"
+            android:id="@+id/to_busLineDetailFragment"
             app:destination="@id/lineInfoDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -42,9 +42,9 @@
         tools:layout="@layout/fragment_refresh_data" />
     <fragment
         android:id="@+id/lineInfoDetailFragment"
-        android:name="com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailFragment"
-        android:label="@string/fragment_line_detail"
-        tools:layout="@layout/fragment_line_info_detail">
+        android:name="com.jmartinal.madridtripplanner.application.ui.buslinedetail.BusLineDetailFragment"
+        android:label="@string/fragment_bus_line_detail"
+        tools:layout="@layout/fragment_bus_line_detail">
         <argument
             android:name="line"
             app:argType="string" />

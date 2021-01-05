@@ -1,4 +1,4 @@
-package com.jmartinal.madridtripplanner.application.ui.lineinfo
+package com.jmartinal.madridtripplanner.application.ui.buslines
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
@@ -11,18 +11,18 @@ import com.jmartinal.madridtripplanner.domain.BusLine
 import com.jmartinal.madridtripplanner.usecases.GetBusLines
 import kotlinx.coroutines.launch
 
-class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
+class BusLinesViewModel(private val getBusLines: GetBusLines) : ViewModel() {
 
-    private val _state = MutableLiveData<LineInfoUiModel>()
-    val state: LiveData<LineInfoUiModel>
+    private val _state = MutableLiveData<BusLinesUiModel>()
+    val state: LiveData<BusLinesUiModel>
         get() = _state
 
-    private val _action = MutableLiveData<Event<LineInfoAction>>()
-    val action: LiveData<Event<LineInfoAction>>
+    private val _action = MutableLiveData<Event<BusLinesAction>>()
+    val action: LiveData<Event<BusLinesAction>>
         get() = _action
 
-    private val _navigation = MutableLiveData<Event<LineInfoDestination>>()
-    val navigation: LiveData<Event<LineInfoDestination>>
+    private val _navigation = MutableLiveData<Event<BusLinesDestination>>()
+    val navigation: LiveData<Event<BusLinesDestination>>
         get() = _navigation
 
     init {
@@ -31,13 +31,13 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
 
     private fun fetchBusLines() {
         viewModelScope.launch {
-            _state.value = LineInfoUiModel.Loading(R.string.common_loading_message)
-            _state.value = LineInfoUiModel.ShowBusLines(getBusLines())
+            _state.value = BusLinesUiModel.Loading(R.string.common_loading_message)
+            _state.value = BusLinesUiModel.ShowBusLines(getBusLines())
         }
     }
 
     fun onBusLineClicked(busLine: BusLine) {
-        _navigation.value = Event(LineInfoDestination.LineInfoDetail(busLine.line))
+        _navigation.value = Event(BusLinesDestination.BusLinesDetail(busLine.line))
     }
 
     @SuppressLint("DefaultLocale")
@@ -45,7 +45,7 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
         viewModelScope.launch {
             if (text.isBlank()) {
                 viewModelScope.launch {
-                    _state.value = LineInfoUiModel.ShowBusLines(getBusLines())
+                    _state.value = BusLinesUiModel.ShowBusLines(getBusLines())
                 }
             } else {
                 val filteredLines = getBusLines().filter {
@@ -55,9 +55,9 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
                     labelMatches || nameAMatches || nameBMatches
                 }
                 if (filteredLines.isEmpty()) {
-                    _state.value = LineInfoUiModel.ShowEmptyResults
+                    _state.value = BusLinesUiModel.ShowEmptyResults
                 } else {
-                    _state.value = LineInfoUiModel.ShowBusLines(filteredLines)
+                    _state.value = BusLinesUiModel.ShowBusLines(filteredLines)
                 }
             }
         }
@@ -67,7 +67,7 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
     fun onSearchQueryTextChanged(text: String) {
         if (text.isBlank()) {
             viewModelScope.launch {
-                _state.value = LineInfoUiModel.ShowBusLines(getBusLines())
+                _state.value = BusLinesUiModel.ShowBusLines(getBusLines())
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.jmartinal.madridtripplanner.application.ui.lineinfo
+package com.jmartinal.madridtripplanner.application.ui.buslines
 
 import android.content.Context
 import android.os.Bundle
@@ -12,17 +12,18 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.jmartinal.madridtripplanner.R
 import com.jmartinal.madridtripplanner.application.common.EventObserver
-import com.jmartinal.madridtripplanner.databinding.FragmentLineInfoBinding
+import com.jmartinal.madridtripplanner.application.ui.buslines.BusLinesFragmentDirections.Companion.toBusLineDetailFragment
+import com.jmartinal.madridtripplanner.databinding.FragmentBusLinesBinding
 import com.jmartinal.madridtripplanner.domain.BusLine
 import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.viewModel
 
 
-class LineInfoFragment : Fragment() {
+class BusLinesFragment : Fragment() {
 
-    private lateinit var binding: FragmentLineInfoBinding
-    private val viewModel: LineInfoViewModel by lifecycleScope.viewModel(this)
-    private lateinit var adapter: LineInfoAdapter
+    private lateinit var binding: FragmentBusLinesBinding
+    private val viewModel: BusLinesViewModel by lifecycleScope.viewModel(this)
+    private lateinit var adapter: BusLinesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class LineInfoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLineInfoBinding.inflate(layoutInflater, container, false)
+        binding = FragmentBusLinesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -54,7 +55,7 @@ class LineInfoFragment : Fragment() {
         val search = menu.findItem(R.id.action_search)
         (search.actionView as SearchView).apply {
             inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
-            queryHint = getString(R.string.line_info_search_hint)
+            queryHint = getString(R.string.bus_lines_search_hint)
             imeOptions = EditorInfo.IME_ACTION_SEARCH
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -75,7 +76,7 @@ class LineInfoFragment : Fragment() {
 
     private fun initUI() {
         with(binding) {
-            adapter = LineInfoAdapter(viewModel::onBusLineClicked)
+            adapter = BusLinesAdapter(viewModel::onBusLineClicked)
             rvBusLines.adapter = adapter
         }
     }
@@ -88,25 +89,23 @@ class LineInfoFragment : Fragment() {
         }
     }
 
-    private fun updateUI(uiModel: LineInfoUiModel) {
+    private fun updateUI(uiModel: BusLinesUiModel) {
         when (uiModel) {
-            is LineInfoUiModel.Loading -> showLoading(uiModel.messageResID)
-            is LineInfoUiModel.ShowBusLines -> showBusLines(uiModel.busLines)
-            LineInfoUiModel.ShowEmptyResults -> showNoResults()
+            is BusLinesUiModel.Loading -> showLoading(uiModel.messageResID)
+            is BusLinesUiModel.ShowBusLines -> showBusLines(uiModel.busLines)
+            BusLinesUiModel.ShowEmptyResults -> showNoResults()
         }
     }
 
-    private fun performAction(action: LineInfoAction) {
+    private fun performAction(action: BusLinesAction) {
         when (action) {
 
         }
     }
 
-    private fun navigateTo(destination: LineInfoDestination) {
+    private fun navigateTo(destination: BusLinesDestination) {
         val action = when (destination) {
-            is LineInfoDestination.LineInfoDetail -> LineInfoFragmentDirections.toLineInfoDetailFragment(
-                destination.line
-            )
+            is BusLinesDestination.BusLinesDetail -> toBusLineDetailFragment(destination.line)
         }
         findNavController().navigate(action)
     }

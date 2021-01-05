@@ -1,4 +1,4 @@
-package com.jmartinal.madridtripplanner.application.ui.lineinfodetail
+package com.jmartinal.madridtripplanner.application.ui.buslinedetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,20 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.jmartinal.madridtripplanner.databinding.FragmentLineInfoDetailBinding
+import com.jmartinal.madridtripplanner.databinding.FragmentBusLineDetailBinding
 import org.koin.androidx.scope.lifecycleScope
 
-class LineInfoDetailFragment : Fragment() {
+class BusLineDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentLineInfoDetailBinding
-    private val viewModel: LineInfoDetailViewModel by lifecycleScope.inject()
-    private val args: LineInfoDetailFragmentArgs by navArgs()
+    private lateinit var binding: FragmentBusLineDetailBinding
+    private val viewModel: BusLineDetailViewModel by lifecycleScope.inject()
+    private val args: BusLineDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLineInfoDetailBinding.inflate(layoutInflater, container, false)
+        binding = FragmentBusLineDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

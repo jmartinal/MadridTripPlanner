@@ -1,4 +1,4 @@
-package com.jmartinal.madridtripplanner.application.ui.lineinfo
+package com.jmartinal.madridtripplanner.application.ui.buslines
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jmartinal.madridtripplanner.databinding.ListItemBusLineBinding
 import com.jmartinal.madridtripplanner.domain.BusLine
 
-class LineInfoAdapter(
+class BusLinesAdapter(
     private val onClickListener: (BusLine) -> Unit
-) : ListAdapter<BusLine, LineInfoAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<BusLine, BusLinesAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ListItemBusLineBinding.inflate(

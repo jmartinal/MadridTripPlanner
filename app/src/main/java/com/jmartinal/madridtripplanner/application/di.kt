@@ -11,12 +11,12 @@ import com.jmartinal.madridtripplanner.application.data.remote.datasource.AppDat
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.BusLineWSDataSource
 import com.jmartinal.madridtripplanner.application.ui.about.AboutFragment
 import com.jmartinal.madridtripplanner.application.ui.about.AboutViewModel
+import com.jmartinal.madridtripplanner.application.ui.buslinedetail.BusLineDetailFragment
+import com.jmartinal.madridtripplanner.application.ui.buslinedetail.BusLineDetailViewModel
+import com.jmartinal.madridtripplanner.application.ui.buslines.BusLinesFragment
+import com.jmartinal.madridtripplanner.application.ui.buslines.BusLinesViewModel
 import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesFragment
 import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesViewModel
-import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment
-import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoViewModel
-import com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailFragment
-import com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailViewModel
 import com.jmartinal.madridtripplanner.application.ui.main.MainActivity
 import com.jmartinal.madridtripplanner.application.ui.main.MainViewModel
 import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataFragment
@@ -73,12 +73,12 @@ private val scopesModule = module {
         viewModel { AboutViewModel(get()) }
         scoped { GetApplicationData(get()) }
     }
-    scope(named<LineInfoFragment>()) {
-        viewModel { LineInfoViewModel(get()) }
+    scope(named<BusLinesFragment>()) {
+        viewModel { BusLinesViewModel(get()) }
         scoped { GetBusLines(get()) }
     }
-    scope(named<LineInfoDetailFragment>()) {
-        viewModel { LineInfoDetailViewModel() }
+    scope(named<BusLineDetailFragment>()) {
+        viewModel { BusLineDetailViewModel() }
     }
     scope(named<FavoritesFragment>()) {
         viewModel { FavoritesViewModel() }

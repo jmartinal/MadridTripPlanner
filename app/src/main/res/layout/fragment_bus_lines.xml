@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".application.ui.lineinfo.LineInfoFragment">
+    tools:context=".application.ui.buslines.BusLinesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_loading"
@@ -40,7 +40,7 @@
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/line_info_empty_lines_message"
+        android:text="@string/bus_lines_empty_lines_message"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
