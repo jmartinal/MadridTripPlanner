@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.jmartinal.madridtripplanner.R
 import com.jmartinal.madridtripplanner.application.common.EventObserver
 import com.jmartinal.madridtripplanner.databinding.FragmentLineInfoBinding
@@ -102,9 +103,12 @@ class LineInfoFragment : Fragment() {
     }
 
     private fun navigateTo(destination: LineInfoDestination) {
-        when (destination) {
-
+        val action = when (destination) {
+            is LineInfoDestination.LineInfoDetail -> LineInfoFragmentDirections.toLineInfoDetailFragment(
+                destination.line
+            )
         }
+        findNavController().navigate(action)
     }
 
     private fun showLoading(messageResID: Int) {

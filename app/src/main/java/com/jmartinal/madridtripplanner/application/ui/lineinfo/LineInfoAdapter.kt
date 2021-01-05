@@ -22,7 +22,7 @@ class LineInfoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener { onClickListener }
+        holder.itemView.setOnClickListener { onClickListener(getItem(position)) }
         holder.bind(getItem(position))
     }
 

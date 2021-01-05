@@ -7,10 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_route">Route</string>
-    <string name="menu_line_info">Line info</string>
+    <string name="menu_line_info">Bus lines</string>
     <string name="menu_favorites">My favorites</string>
     <string name="menu_refresh_data">Refresh data</string>
     <string name="menu_about_app">About the app</string>
+
+    <string name="fragment_line_detail">Line info</string>
 
     <string name="common_accept">Accept</string>
     <string name="common_cancel">Cancel</string>

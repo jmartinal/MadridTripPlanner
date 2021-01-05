@@ -37,7 +37,7 @@ class LineInfoViewModel(private val getBusLines: GetBusLines) : ViewModel() {
     }
 
     fun onBusLineClicked(busLine: BusLine) {
-
+        _navigation.value = Event(LineInfoDestination.LineInfoDetail(busLine.line))
     }
 
     @SuppressLint("DefaultLocale")

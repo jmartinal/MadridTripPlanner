@@ -15,7 +15,15 @@
         android:id="@+id/nav_line_info"
         android:name="com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment"
         android:label="@string/menu_line_info"
-        tools:layout="@layout/fragment_line_info" />
+        tools:layout="@layout/fragment_line_info">
+        <action
+            android:id="@+id/to_lineInfoDetailFragment"
+            app:destination="@id/lineInfoDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_favorites"
@@ -32,4 +40,13 @@
         android:name="com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataFragment"
         android:label="@string/menu_refresh_data"
         tools:layout="@layout/fragment_refresh_data" />
+    <fragment
+        android:id="@+id/lineInfoDetailFragment"
+        android:name="com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailFragment"
+        android:label="@string/fragment_line_detail"
+        tools:layout="@layout/fragment_line_info_detail">
+        <argument
+            android:name="line"
+            app:argType="string" />
+    </fragment>
 </navigation>
