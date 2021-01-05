@@ -15,6 +15,8 @@ import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesFragmen
 import com.jmartinal.madridtripplanner.application.ui.favorites.FavoritesViewModel
 import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoFragment
 import com.jmartinal.madridtripplanner.application.ui.lineinfo.LineInfoViewModel
+import com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailFragment
+import com.jmartinal.madridtripplanner.application.ui.lineinfodetail.LineInfoDetailViewModel
 import com.jmartinal.madridtripplanner.application.ui.main.MainActivity
 import com.jmartinal.madridtripplanner.application.ui.main.MainViewModel
 import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataFragment
@@ -74,6 +76,9 @@ private val scopesModule = module {
     scope(named<LineInfoFragment>()) {
         viewModel { LineInfoViewModel(get()) }
         scoped { GetBusLines(get()) }
+    }
+    scope(named<LineInfoDetailFragment>()) {
+        viewModel { LineInfoDetailViewModel() }
     }
     scope(named<FavoritesFragment>()) {
         viewModel { FavoritesViewModel() }
