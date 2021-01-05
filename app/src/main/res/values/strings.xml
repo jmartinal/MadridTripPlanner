@@ -31,4 +31,12 @@
 
     <string name="refresh_data_last_update">Last update at</string>
     <string name="refresh_application_data">Refresh application data</string>
+
+    <string name="line_info_search">Search</string>
+    <string name="line_info_search_hint">Search by line, header or destiny</string>
+    <string name="line_info_empty_lines_message">No bus lines found</string>
+
+    <string name="bus_line_item_from">From</string>
+    <string name="bus_line_item_to">To</string>
+    <string name="bus_line_item_mark_favorite">Mark as favorite</string>
 </resources>
