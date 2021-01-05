@@ -22,6 +22,7 @@
     <style name="Theme.MadridTripPlanner.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorControlActivated">?attr/colorOnPrimary</item>
     </style>
 
     <style name="Theme.MadridTripPlanner.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

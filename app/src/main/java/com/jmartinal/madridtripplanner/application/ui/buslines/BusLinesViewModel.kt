@@ -36,6 +36,10 @@ class BusLinesViewModel(private val getBusLines: GetBusLines) : ViewModel() {
         }
     }
 
+    fun resetDefault() {
+        viewModelScope.launch { _state.value = BusLinesUiModel.ShowBusLines(getBusLines()) }
+    }
+
     fun onBusLineClicked(busLine: BusLine) {
         _navigation.value = Event(BusLinesDestination.BusLinesDetail(busLine.line))
     }
@@ -49,9 +53,9 @@ class BusLinesViewModel(private val getBusLines: GetBusLines) : ViewModel() {
                 }
             } else {
                 val filteredLines = getBusLines().filter {
-                    val labelMatches = it.label.toUpperCase().contains(text.toUpperCase())
-                    val nameAMatches = it.nameA.toUpperCase().contains(text.toUpperCase())
-                    val nameBMatches = it.nameB.toUpperCase().contains(text.toUpperCase())
+                    val labelMatches = it.label.contains(text, true)
+                    val nameAMatches = it.nameA.contains(text, true)
+                    val nameBMatches = it.nameB.contains(text, true)
                     labelMatches || nameAMatches || nameBMatches
                 }
                 if (filteredLines.isEmpty()) {

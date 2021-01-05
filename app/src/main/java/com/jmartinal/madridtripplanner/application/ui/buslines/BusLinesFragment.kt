@@ -51,7 +51,7 @@ class BusLinesFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_line_info, menu)
+        inflater.inflate(R.menu.menu_bus_lines, menu)
         val search = menu.findItem(R.id.action_search)
         (search.actionView as SearchView).apply {
             inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
@@ -108,6 +108,7 @@ class BusLinesFragment : Fragment() {
             is BusLinesDestination.BusLinesDetail -> toBusLineDetailFragment(destination.line)
         }
         findNavController().navigate(action)
+        viewModel.resetDefault()
     }
 
     private fun showLoading(messageResID: Int) {
