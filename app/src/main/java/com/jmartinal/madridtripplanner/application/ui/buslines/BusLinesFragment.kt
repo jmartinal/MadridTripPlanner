@@ -105,7 +105,7 @@ class BusLinesFragment : Fragment() {
 
     private fun navigateTo(destination: BusLinesDestination) {
         val action = when (destination) {
-            is BusLinesDestination.BusLinesDetail -> toBusLineDetailFragment(destination.line)
+            is BusLinesDestination.BusLinesDetail -> toBusLineDetailFragment(destination.lineLabel)
         }
         findNavController().navigate(action)
         viewModel.resetDefault()

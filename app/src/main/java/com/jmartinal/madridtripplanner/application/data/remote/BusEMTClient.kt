@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class EMTOpenDataClient {
+class BusEMTClient {
     private val okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
         .addInterceptor(HttpLoggingInterceptor().apply {
             level =
@@ -20,9 +20,9 @@ class EMTOpenDataClient {
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    val service: EMTOpenDataService = retrofit.create(EMTOpenDataService::class.java)
+    val service: BusEMTService = retrofit.create(BusEMTService::class.java)
 
     companion object {
-        private const val BASE_URL = "https://openapi.emtmadrid.es/v2/"
+        private const val BASE_URL = "https://openapi.emtmadrid.es/v2/transport/busemtmad/"
     }
 }

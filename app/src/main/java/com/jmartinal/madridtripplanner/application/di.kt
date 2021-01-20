@@ -6,6 +6,7 @@ import com.jmartinal.madridtripplanner.application.common.manager.AndroidConnect
 import com.jmartinal.madridtripplanner.application.data.local.EMTDatabase
 import com.jmartinal.madridtripplanner.application.data.local.datasource.AppDataRoomDataSource
 import com.jmartinal.madridtripplanner.application.data.local.datasource.BusLineRoomDataSource
+import com.jmartinal.madridtripplanner.application.data.remote.BusEMTClient
 import com.jmartinal.madridtripplanner.application.data.remote.EMTOpenDataClient
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.AppDataWSDataSource
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.BusLineWSDataSource
@@ -50,6 +51,7 @@ fun Application.initDI() {
 private val appModule = module {
     single { EMTDatabase.build(get()) }
     single { EMTOpenDataClient() }
+    single { BusEMTClient() }
     factory<AppCompatActivity> { MainActivity() }
     factory<ConnectivityManager> { AndroidConnectivityManager(get()) }
     factory<AppDataLocalDataSource> { AppDataRoomDataSource(get()) }
@@ -78,7 +80,8 @@ private val scopesModule = module {
         scoped { GetBusLines(get()) }
     }
     scope(named<BusLineDetailFragment>()) {
-        viewModel { BusLineDetailViewModel() }
+        viewModel { (lineID: String) -> BusLineDetailViewModel(lineID, get()) }
+        scoped { GetBusLineDetail(get(), get()) }
     }
     scope(named<FavoritesFragment>()) {
         viewModel { FavoritesViewModel() }

@@ -12,22 +12,22 @@ class FetchApplicationData(
     suspend operator fun invoke(forceUpdate: Boolean = false) {
         if (forceUpdate) {
             Log.d(FetchApplicationData::class.java.canonicalName, "Forcing data update")
-            val accessToken = appDataRepository.updateData()
-            busLineRepository.updateData(accessToken)
+            val accessToken = appDataRepository.update()
+            busLineRepository.update(accessToken)
         } else {
-            if (appDataRepository.hasData() && busLineRepository.hasData()) {
-                if (appDataRepository.isDataUpdated()) {
+            if (appDataRepository.isNotEmpty() && busLineRepository.isNotEmpty()) {
+                if (appDataRepository.isUpToDate()) {
                     Log.d(FetchApplicationData::class.java.canonicalName, "Data is up to date")
                     appDataRepository.refreshAccessToken()
                 } else {
                     Log.d(FetchApplicationData::class.java.canonicalName, "Updating data")
-                    val accessToken = appDataRepository.updateData()
-                    busLineRepository.updateData(accessToken)
+                    val accessToken = appDataRepository.update()
+                    busLineRepository.update(accessToken)
                 }
             } else {
                 Log.d(FetchApplicationData::class.java.canonicalName, "Downloading data")
-                val accessToken = appDataRepository.downloadData()
-                busLineRepository.downloadData(accessToken)
+                val accessToken = appDataRepository.download()
+                busLineRepository.download(accessToken)
             }
         }
     }

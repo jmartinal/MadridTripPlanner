@@ -22,7 +22,7 @@ data class AppInfoData(
     val priv: String,
     val tokenSecExpiration: Int,
     val updatedAt: String,
-    val userName: String
+    val userName: String?
 )
 
 @JsonClass(generateAdapter = true)

@@ -9,24 +9,24 @@ class AppDataRepository(
     private val remoteDataSource: AppDataRemoteDataSource
 ) {
 
-    suspend fun hasData(): Boolean = !localDataSource.isEmpty()
+    suspend fun isNotEmpty(): Boolean = !localDataSource.isEmpty()
 
-    suspend fun getData(): ApplicationData = localDataSource.getAppData()
-
-    suspend fun isDataUpdated(): Boolean =
+    suspend fun isUpToDate(): Boolean =
         remoteDataSource.getAppData().apiVersion == localDataSource.getAppData().apiVersion
 
-    suspend fun downloadData(): String {
+    suspend fun download(): String {
         val remoteAppData = remoteDataSource.getAppData()
         localDataSource.saveAppData(remoteAppData)
         return remoteAppData.accessToken
     }
 
-    suspend fun updateData(): String {
+    suspend fun update(): String {
         val remoteAppData = remoteDataSource.getAppData()
         localDataSource.updateAppData(remoteAppData)
         return remoteAppData.accessToken
     }
+
+    suspend fun getData(): ApplicationData = localDataSource.getAppData()
 
     suspend fun refreshAccessToken(): String {
         val remoteAppData = remoteDataSource.getAppData()

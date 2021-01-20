@@ -46,7 +46,7 @@
         android:label="@string/fragment_bus_line_detail"
         tools:layout="@layout/fragment_bus_line_detail">
         <argument
-            android:name="line"
+            android:name="lineLabel"
             app:argType="string" />
     </fragment>
 </navigation>

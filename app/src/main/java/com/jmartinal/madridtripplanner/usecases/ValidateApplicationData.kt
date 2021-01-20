@@ -7,5 +7,5 @@ class ValidateApplicationData(
     private val infoRepository: AppDataRepository,
     private val busLineRepository: BusLineRepository
 ) {
-    suspend operator fun invoke() = infoRepository.hasData() && busLineRepository.hasData()
+    suspend operator fun invoke() = infoRepository.isNotEmpty() && busLineRepository.isNotEmpty()
 }
