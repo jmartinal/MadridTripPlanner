@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.jmartinal.madridtripplanner.R
 import com.jmartinal.madridtripplanner.application.common.Event
 import com.jmartinal.madridtripplanner.data.manager.ConnectivityManager
-import com.jmartinal.madridtripplanner.usecases.FetchApplicationData
-import com.jmartinal.madridtripplanner.usecases.GetApplicationData
+import com.jmartinal.madridtripplanner.usecases.FetchData
+import com.jmartinal.madridtripplanner.usecases.GetAppInfo
 import kotlinx.coroutines.launch
 
 class RefreshDataViewModel(
     private val connectivityManager: ConnectivityManager,
-    private val getApplicationData: GetApplicationData,
-    private val fetchApplicationData: FetchApplicationData
+    private val getAppInfo: GetAppInfo,
+    private val fetchData: FetchData
 ) : ViewModel() {
 
     private val _state = MutableLiveData<RefreshDataUiModel>()
@@ -32,8 +32,7 @@ class RefreshDataViewModel(
     private fun fetchApplicationData() {
         _state.value = RefreshDataUiModel.Loading(R.string.common_loading_message)
         viewModelScope.launch {
-            val updatedAt = getApplicationData().updatedAt
-            _state.value = RefreshDataUiModel.Default(updatedAt)
+            _state.value = RefreshDataUiModel.Default(getAppInfo().updatedAt)
         }
     }
 
@@ -41,9 +40,7 @@ class RefreshDataViewModel(
         _state.value = RefreshDataUiModel.Loading(R.string.message_downloading_info)
         if (connectivityManager.isConnected()) {
             viewModelScope.launch {
-                fetchApplicationData(true)
-                val updatedAt = getApplicationData().updatedAt
-                _state.value = RefreshDataUiModel.Default(updatedAt)
+                _state.value = RefreshDataUiModel.Default(fetchData().updatedAt)
             }
         } else {
             _action.value =

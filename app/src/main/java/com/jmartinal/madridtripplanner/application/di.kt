@@ -3,13 +3,16 @@ package com.jmartinal.madridtripplanner.application
 import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import com.jmartinal.madridtripplanner.application.common.manager.AndroidConnectivityManager
-import com.jmartinal.madridtripplanner.application.data.local.EMTDatabase
+import com.jmartinal.madridtripplanner.application.data.local.EMTOpenDataDatabase
+import com.jmartinal.madridtripplanner.application.data.local.EMTTransportDatabase
 import com.jmartinal.madridtripplanner.application.data.local.datasource.AppDataRoomDataSource
 import com.jmartinal.madridtripplanner.application.data.local.datasource.BusLineRoomDataSource
-import com.jmartinal.madridtripplanner.application.data.remote.BusEMTClient
+import com.jmartinal.madridtripplanner.application.data.local.datasource.GroupRoomDataSource
 import com.jmartinal.madridtripplanner.application.data.remote.EMTOpenDataClient
+import com.jmartinal.madridtripplanner.application.data.remote.EMTTransportClient
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.AppDataWSDataSource
 import com.jmartinal.madridtripplanner.application.data.remote.datasource.BusLineWSDataSource
+import com.jmartinal.madridtripplanner.application.data.remote.datasource.GroupWSDataSource
 import com.jmartinal.madridtripplanner.application.ui.about.AboutFragment
 import com.jmartinal.madridtripplanner.application.ui.about.AboutViewModel
 import com.jmartinal.madridtripplanner.application.ui.buslinedetail.BusLineDetailFragment
@@ -24,13 +27,11 @@ import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataFra
 import com.jmartinal.madridtripplanner.application.ui.refreshdata.RefreshDataViewModel
 import com.jmartinal.madridtripplanner.application.ui.route.RouteFragment
 import com.jmartinal.madridtripplanner.application.ui.route.RouteViewModel
-import com.jmartinal.madridtripplanner.data.datasource.AppDataLocalDataSource
-import com.jmartinal.madridtripplanner.data.datasource.AppDataRemoteDataSource
-import com.jmartinal.madridtripplanner.data.datasource.BusLineLocalDataSource
-import com.jmartinal.madridtripplanner.data.datasource.BusLineRemoteDataSource
+import com.jmartinal.madridtripplanner.data.datasource.*
 import com.jmartinal.madridtripplanner.data.manager.ConnectivityManager
 import com.jmartinal.madridtripplanner.data.repository.AppDataRepository
 import com.jmartinal.madridtripplanner.data.repository.BusLineRepository
+import com.jmartinal.madridtripplanner.data.repository.GroupRepository
 import com.jmartinal.madridtripplanner.usecases.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -49,31 +50,40 @@ fun Application.initDI() {
 }
 
 private val appModule = module {
-    single { EMTDatabase.build(get()) }
+    single { EMTTransportDatabase.build(get()) }
+    single { EMTOpenDataDatabase.build(get()) }
+
+    single { EMTTransportClient() }
     single { EMTOpenDataClient() }
-    single { BusEMTClient() }
+
     factory<AppCompatActivity> { MainActivity() }
+
     factory<ConnectivityManager> { AndroidConnectivityManager(get()) }
+
     factory<AppDataLocalDataSource> { AppDataRoomDataSource(get()) }
     factory<AppDataRemoteDataSource> { AppDataWSDataSource(get()) }
+    factory<GroupLocalDataSource> { GroupRoomDataSource(get()) }
+    factory<GroupRemoteDataSource> { GroupWSDataSource(get()) }
     factory<BusLineLocalDataSource> { BusLineRoomDataSource(get()) }
     factory<BusLineRemoteDataSource> { BusLineWSDataSource(get()) }
 }
 
 private val dataModule = module {
     factory { AppDataRepository(get(), get()) }
+    factory { GroupRepository(get(), get()) }
     factory { BusLineRepository(get(), get()) }
 }
 
 private val scopesModule = module {
     scope(named<MainActivity>()) {
-        viewModel { MainViewModel(get(), get(), get()) }
-        scoped { FetchApplicationData(get(), get()) }
-        scoped { ValidateApplicationData(get(), get()) }
+        viewModel { MainViewModel(get(), get(), get(), get()) }
+        scoped { ValidateAppInfo(get()) }
+        scoped { RefreshAccessTokenIfNeeded(get()) }
+        scoped { FetchData(get(), get(), get()) }
     }
     scope(named<AboutFragment>()) {
         viewModel { AboutViewModel(get()) }
-        scoped { GetApplicationData(get()) }
+        scoped { GetAppInfo(get()) }
     }
     scope(named<BusLinesFragment>()) {
         viewModel { BusLinesViewModel(get()) }
@@ -91,7 +101,7 @@ private val scopesModule = module {
     }
     scope(named<RefreshDataFragment>()) {
         viewModel { RefreshDataViewModel(get(), get(), get()) }
-        scoped { GetApplicationData(get()) }
-        scoped { FetchApplicationData(get(), get()) }
+        scoped { GetAppInfo(get()) }
+        scoped { FetchData(get(), get(), get()) }
     }
 }

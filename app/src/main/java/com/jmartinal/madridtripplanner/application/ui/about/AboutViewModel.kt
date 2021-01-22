@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jmartinal.madridtripplanner.R
 import com.jmartinal.madridtripplanner.application.ui.about.AboutUiModel.Default
-import com.jmartinal.madridtripplanner.usecases.GetApplicationData
+import com.jmartinal.madridtripplanner.usecases.GetAppInfo
 import kotlinx.coroutines.launch
 
-class AboutViewModel(private val getApplicationData: GetApplicationData) : ViewModel() {
+class AboutViewModel(private val getAppInfo: GetAppInfo) : ViewModel() {
     private val _state = MutableLiveData<AboutUiModel>()
     val state: LiveData<AboutUiModel>
         get() = _state
@@ -21,7 +21,7 @@ class AboutViewModel(private val getApplicationData: GetApplicationData) : ViewM
     private fun fetchApplicationData() {
         _state.value = AboutUiModel.Loading(R.string.common_loading_message)
         viewModelScope.launch {
-            val apiVersion = getApplicationData().apiVersion
+            val apiVersion = getAppInfo().apiVersion
             _state.value = Default(apiVersion)
         }
     }

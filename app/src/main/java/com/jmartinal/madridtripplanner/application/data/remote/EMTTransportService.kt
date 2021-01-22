@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint("SimpleDateFormat")
-interface BusEMTService {
+interface EMTTransportService {
 
     @GET("lines/groups")
     suspend fun getGroups(@Header("accessToken") accessToken: String): GroupsResult

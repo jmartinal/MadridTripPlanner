@@ -1,6 +1,6 @@
 package com.jmartinal.madridtripplanner.application.data.remote.model
 
-import com.jmartinal.madridtripplanner.domain.ApiInfo
+import com.jmartinal.madridtripplanner.domain.AppInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,7 +22,7 @@ data class APIVersion(
     val version: String
 )
 
-fun ApiInfoResult.toDomain() = ApiInfo(
+fun ApiInfoResult.toDomain() = AppInfo(
     this.apiVersion.version,
     this.versions[0],
     this.versions[1],

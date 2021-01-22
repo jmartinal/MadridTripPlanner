@@ -1,12 +1,12 @@
 package com.jmartinal.madridtripplanner.data.datasource
 
-import com.jmartinal.madridtripplanner.domain.ApplicationData
+import com.jmartinal.madridtripplanner.domain.AppInfo
 
 
 interface AppDataLocalDataSource {
     suspend fun isEmpty(): Boolean
-    suspend fun saveAppData(applicationData: ApplicationData)
-    suspend fun updateAppData(applicationData: ApplicationData)
-    suspend fun refreshAccessToken(apiVersion: String, newToken: String)
-    suspend fun getAppData(): ApplicationData
+    suspend fun save(appInfo: AppInfo)
+    suspend fun update(appInfo: AppInfo)
+    suspend fun refreshAccessToken(apiVersion: String, newToken: String, newExpirationTime: Long)
+    suspend fun getAppData(): AppInfo
 }

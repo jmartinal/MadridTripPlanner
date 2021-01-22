@@ -1,28 +1,32 @@
 package com.jmartinal.madridtripplanner.application.data.remote.model
 
-import com.jmartinal.madridtripplanner.domain.AppInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class AppInfoResult(
+data class ApiLoginResult(
     val code: String,
-    @Json(name = "data") val info: List<AppInfoData>,
+    @Json(name = "data") val info: List<ApiLoginData>,
     val datetime: String,
     val description: String
 )
 
 @JsonClass(generateAdapter = true)
-data class AppInfoData(
+data class ApiLoginData(
     val accessToken: String,
     val apiCounter: ApiCounter,
     val email: String,
     val idUser: String,
     val nameApp: String,
     val priv: String,
-    val tokenSecExpiration: Int,
+    @Json(name = "tokenDteExpiration") val tokenDateTimeExpirationApi: ApiLoginDate,
     val updatedAt: String,
     val userName: String?
+)
+
+@JsonClass(generateAdapter = true)
+data class ApiLoginDate(
+    @Json(name = "\$date") val tokenExpirationTime: Long
 )
 
 @JsonClass(generateAdapter = true)
@@ -33,5 +37,3 @@ data class ApiCounter(
     val licenceUse: String,
     val owner: Int
 )
-
-fun AppInfoResult.toDomain() = AppInfo(this.info[0].nameApp, this.info[0].accessToken)

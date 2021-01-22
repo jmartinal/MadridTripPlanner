@@ -16,10 +16,19 @@ interface BusLineDao {
     fun findAll(): List<BusLine>
 
     @Query("SELECT * FROM bus_lines WHERE line = :line")
-    fun findByTag(line: String): BusLine
+    fun findByLine(line: String): BusLine
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(busLines: BusLine)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(busLines: List<BusLine>)
+
+    @Query("DELETE FROM bus_lines WHERE line = :line")
+    fun deleteByLine(line: String)
+
+    @Query("DELETE FROM bus_lines WHERE line IN (:lines)")
+    fun deleteInLines(lines: List<String>)
 
     @Query("DELETE FROM bus_lines")
     fun deleteAll()
